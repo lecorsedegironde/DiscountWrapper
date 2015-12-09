@@ -146,7 +146,7 @@ class DiscountWrapper
     function addItemToCart($cartGUID, $offerID, $productID, $productQty){
 
         $relatedProduct = $this->getProductWithID($productID);
-        $sellerID = $relatedProduct["Products"]["Seller"]["Id"];
+        $sellerID = $relatedProduct['Products'][0]['BestOffer']['Seller']['Id'];
 
         $params = array(
             "ApiKey" => $this->_key,
@@ -163,5 +163,4 @@ class DiscountWrapper
         $cartData = json_decode(json_encode($this->getCurlFile($params,$relatedURL)),true);
         return $cartData['ErrorType'];
     }
-
 }
