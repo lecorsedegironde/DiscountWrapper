@@ -142,8 +142,26 @@ class DiscountWrapper
         return json_decode(json_encode($this->getCurlFile($params,$relatedURL)),true);
     }
 
-    function addItemToCart(){
+    //Add a defined quantity of a defined offer about a defined product to a defined cart
+    function addItemToCart($cartGUID, $offerID, $productID, $productQty){
 
+        $relatedProduct = $this->getProductWithID($productID);
+        $sellerID = $relatedProduct["Products"]["Seller"]["Id"];
+
+        $params = array(
+            "ApiKey" => $this->_key,
+            "PushToCartRequest" => array(
+                "CartGUID"=> $cartGUID,
+                "OfferId" => $offerID,
+                "ProductId" => $productID,
+                "Quantity" => $productQty,
+                "SellerId" => $sellerID
+            )
+        );
+
+        $relatedURL = "https://api.cdiscount.com/OpenApi/json/PushToCart";
+        $cartData = json_decode(json_encode($this->getCurlFile($params,$relatedURL)),true);
+        return $cartData['ErrorType'];
     }
 
 }
