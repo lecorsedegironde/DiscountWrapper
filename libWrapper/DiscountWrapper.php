@@ -14,12 +14,14 @@ class DiscountWrapper
     //Private API Key supplied by CDiscount
     private $_key;
 
-    public function __construct($key){
+    public function __construct($key)
+    {
         $this->_key = $key;
     }
 
     //Get and decode the JSON file sent by the API through cURL. It doesn't uses SSL though.
-    private function getCurlFile($paramArray, $apiUrl){
+    private function getCurlFile($paramArray, $apiUrl)
+    {
         $encodedJSON = json_encode($paramArray);
         $ch = curl_init($apiUrl);
 
@@ -30,18 +32,19 @@ class DiscountWrapper
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array(
             'Content-Type: application/json',
-            'Content-Length: '.strlen($encodedJSON)
+            'Content-Length: ' . strlen($encodedJSON)
         ));
 
-        $res=curl_exec($ch);
+        $res = curl_exec($ch);
         curl_close($ch);
 
-        $answer = json_decode($res,true);
+        $answer = json_decode($res, true);
         return $answer;
     }
 
     //Search products by name.
-    public function search($productName){
+    public function search($productName)
+    {
         $params = array(
             "ApiKey" => $this->_key,
             "SearchRequest" => array(
@@ -65,11 +68,12 @@ class DiscountWrapper
 
         $relatedURL = "https://api.cdiscount.com/OpenApi/json/Search";
 
-        return json_decode(json_encode($this->getCurlFile($params,$relatedURL)),true);
+        return json_decode(json_encode($this->getCurlFile($params, $relatedURL)), true);
     }
 
     //Use getProduct function with cDiscount private ID
-    function getProductWithID($productID){
+    function getProductWithID($productID)
+    {
 
         $params = array(
             "ApiKey" => $this->_key,
@@ -86,11 +90,12 @@ class DiscountWrapper
 
         $relatedURL = "https://api.cdiscount.com/OpenApi/json/GetProduct";
 
-        return json_decode(json_encode($this->getCurlFile($params,$relatedURL)),true);
+        return json_decode(json_encode($this->getCurlFile($params, $relatedURL)), true);
     }
 
     //Use getProduct function with product EAN
-    function getProductWithEAN($productEAN){
+    function getProductWithEAN($productEAN)
+    {
 
         $params = array(
             "ApiKey" => $this->_key,
@@ -107,11 +112,12 @@ class DiscountWrapper
 
         $relatedURL = "https://api.cdiscount.com/OpenApi/json/GetProduct";
 
-        return json_decode(json_encode($this->getCurlFile($params,$relatedURL)),true);
+        return json_decode(json_encode($this->getCurlFile($params, $relatedURL)), true);
     }
 
     //Creates an empty cart. Return the cart-created ID for future item add.
-    function newCart(){
+    function newCart()
+    {
 
         $params = array(
             "ApiKey" => $this->_key,
@@ -124,13 +130,14 @@ class DiscountWrapper
         );
 
         $relatedURL = "https://api.cdiscount.com/OpenApi/json/PushToCart";
-        $cartData = json_decode(json_encode($this->getCurlFile($params,$relatedURL)),true);
+        $cartData = json_decode(json_encode($this->getCurlFile($params, $relatedURL)), true);
 
         return $cartData['CartGUID'];
     }
 
     //Returns cart details
-    function cartDetails($cartGUID){
+    function cartDetails($cartGUID)
+    {
         $params = array(
             "ApiKey" => $this->_key,
             "CartRequest" => array(
@@ -139,11 +146,12 @@ class DiscountWrapper
         );
 
         $relatedURL = "https://api.cdiscount.com/OpenApi/json/GetCart";
-        return json_decode(json_encode($this->getCurlFile($params,$relatedURL)),true);
+        return json_decode(json_encode($this->getCurlFile($params, $relatedURL)), true);
     }
 
     //Add a defined quantity of a defined offer about a defined product to a defined cart
-    function addItemToCart($cartGUID, $offerID, $productID, $productQty){
+    function addItemToCart($cartGUID, $offerID, $productID, $productQty)
+    {
 
         $relatedProduct = $this->getProductWithID($productID);
         $sellerID = $relatedProduct['Products'][0]['BestOffer']['Seller']['Id'];
@@ -151,7 +159,7 @@ class DiscountWrapper
         $params = array(
             "ApiKey" => $this->_key,
             "PushToCartRequest" => array(
-                "CartGUID"=> $cartGUID,
+                "CartGUID" => $cartGUID,
                 "OfferId" => $offerID,
                 "ProductId" => $productID,
                 "Quantity" => $productQty,
@@ -160,7 +168,7 @@ class DiscountWrapper
         );
 
         $relatedURL = "https://api.cdiscount.com/OpenApi/json/PushToCart";
-        $cartData = json_decode(json_encode($this->getCurlFile($params,$relatedURL)),true);
+        $cartData = json_decode(json_encode($this->getCurlFile($params, $relatedURL)), true);
         return $cartData['ErrorType'];
     }
 }
