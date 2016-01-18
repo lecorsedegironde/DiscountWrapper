@@ -25,7 +25,6 @@ If you want to use it for now you will have to : **Note this will only works wit
 - make your getProduct or search query : `$search = $dW->search($productName);`
 - create an array for the return products : `$product = array();`
 - got the returns product in an array : 
-
-    foreach ($search["Products"] as $p) {
+    `foreach ($search["Products"] as $p) {
         array_push($product, new Product($p));
-    }
+    }`
