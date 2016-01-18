@@ -37,13 +37,13 @@ class Size
      */
     public function __construct($size)
     {
-        $this->_id = $size['Id'];
+        $this->_id = $size["Id"];
 
-        $this->_name = $size['Name'];
+        $this->_name = $size["Name"];
 
-        $this->_salePrice = $size['SalePrice'];
+        $this->_salePrice = $size["SalePrice"];
 
-        $this->_available = $size['IsAvailable'];
+        $this->_available = $size["IsAvailable"];
     }
 
     /**

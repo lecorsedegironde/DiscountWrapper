@@ -72,10 +72,10 @@ class Offer
 
         $this->_seller = new Seller($offer["Seller"]);
 
-        if ($offer['Shippings'] != null) {
+        if ($offer["Shippings"] != null) {
             $this->_shippings = array();
 
-            foreach($offer['Shippings'] as $shipping) {
+            foreach($offer["Shippings"] as $shipping) {
                 $ship = new Shipping($shipping);
                 array_push($this->_shippings, $ship);
             }
@@ -84,10 +84,10 @@ class Offer
         }
 
 
-        if ($offer['Sizes'] != null) {
+        if ($offer["Sizes"] != null) {
             $this->_sizes = array();
 
-            foreach($offer['Sizes'] as $size) {
+            foreach($offer["Sizes"] as $size) {
                 $siz = new Size($size);
                 array_push($this->_sizes, $siz);
             }

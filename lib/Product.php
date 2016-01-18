@@ -57,7 +57,7 @@ class Product
     private $_bestOffer;
 
     /**
-     * @var Images array, contains the product pictures
+     * @var Image array, contains the product pictures
      */
     private $_images;
 
@@ -75,7 +75,7 @@ class Product
 
     /**
      * Product constructor.
-     * @param $product, the product array
+     * @param $product , the product array
      */
     public function __construct($product)
     {
@@ -97,14 +97,35 @@ class Product
 
         $this->_bestOffer = new Offer($product["BestOffer"]);
 
-        //TODO Use class instead of PHP array
-        $this->_images = $product["Images"];
+        if ($product["Images"] != null) {
+            $this->_images = array();
+            foreach($product["Images"] as $image) {
+                $img = new Image($image);
+                array_push($this->_images, $img);
+            }
+        } else {
+            $this->_images = null;
+        }
 
-        //TODO Same as above
-        $this->_offers = $product["Offers"];
+        if ($product["Offers"] != null) {
+            $this->_offers = array();
+            foreach ($product["Offers"] as $offer) {
+                $off = new Offer($offer);
+                array_push($this->_offers, $off);
+            }
+        } else {
+            $this->_offers = null;
+        }
 
-        //TODO Same as above
-        $this->_associatedProducts = $product["AssociatedProducts"];
+        if ($product["AssociatedProducts"] != null) {
+            $this->_associatedProducts = array();
+            foreach ($product["AssociatedProducts"] as $associatedProduct) {
+                $prod = new Product($associatedProduct);
+                array_push($this->_associatedProducts, $prod);
+            }
+        } else {
+            $this->_associatedProducts = null;
+        }
     }
 
     /**
@@ -180,7 +201,7 @@ class Product
     }
 
     /**
-     * @return Images array, contains the product pictures|null if there are no images
+     * @return Image array, contains the product pictures|null if there are no images
      */
     public function getImages()
     {
@@ -188,7 +209,8 @@ class Product
     }
 
     /**
-     * @return Offer array, all available offer for this product, max 6|null if Scope.Offers set to false in the query
+     * @return Offer array, all available offer for this product, max 6|null if Scope.Offers set to false in the
+     * query or if no offers
      */
     public function getOffers()
     {
@@ -196,7 +218,8 @@ class Product
     }
 
     /**
-     * @return Product array, contains associated products|null if Scope.AssociatedProduct set to false in the query
+     * @return Product array, contains associated products|null if Scope.AssociatedProduct set to false in the
+     * query or if no associated products
      */
     public function getAssociatedProducts()
     {

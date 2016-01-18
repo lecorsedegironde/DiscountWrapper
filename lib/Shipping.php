@@ -44,13 +44,13 @@ class Shipping
      */
     public function __construct($shipping)
     {
-        $this->_name = $shipping['Name'];
-        $this->_price = $shipping['Price'];
+        $this->_name = $shipping["Name"];
+        $this->_price = $shipping["Price"];
 
-        $this->_displayDelay = $shipping['DelayToDisplay'];
+        $this->_displayDelay = $shipping["DelayToDisplay"];
 
-        $this->_minDeliveryDate = new DateTime($shipping['MinDeliveryDate']);
-        $this->_maxDeliveryDate = new DateTime($shipping['MaxDeliveryDate']);
+        $this->_minDeliveryDate = new DateTime($shipping["MinDeliveryDate"]);
+        $this->_maxDeliveryDate = new DateTime($shipping["MaxDeliveryDate"]);
     }
 
     /**
