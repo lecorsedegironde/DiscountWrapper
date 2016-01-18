@@ -23,9 +23,9 @@ class Offer
     private $_condition;
 
     /**
-     * @var true if the product os available for sale, false if not
+     * @var boolean, true if the product os available for sale, false if not
      */
-    private $_isAvailable;
+    private $_available;
 
     /**
      * @var string, URL to the product page on the cDiscount website
@@ -64,7 +64,7 @@ class Offer
 
         $this->_condition = $offer["Condition"];
 
-        $this->_isAvailable = $offer["IsAvailable"];
+        $this->_available = $offer["IsAvailable"];
 
         $this->_productUrl = $offer["ProductURL"];
 
@@ -97,4 +97,67 @@ class Offer
 
     }
 
+    /**
+     * @return string, the id of the offer
+     */
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * @return string, the condition of the offer
+     */
+    public function getCondition()
+    {
+        return $this->_condition;
+    }
+
+    /**
+     * @return boolean, true if the offer is available, false if not
+     */
+    public function isAvailable()
+    {
+        return $this->_available;
+    }
+
+    /**
+     * @return string, the product page url
+     */
+    public function getProductUrl()
+    {
+        return $this->_productUrl;
+    }
+
+    /**
+     * @return Price, price and details about the offer
+     */
+    public function getPrice()
+    {
+        return $this->_price;
+    }
+
+    /**
+     * @return Seller, the seller of the offer
+     */
+    public function getSeller()
+    {
+        return $this->_seller;
+    }
+
+    /**
+     * @return Shipping array if there are shippings infos|null if not
+     */
+    public function getShippings()
+    {
+        return $this->_shippings;
+    }
+
+    /**
+     * @return Size array if there are different sizes|null if not
+     */
+    public function getSizes()
+    {
+        return $this->_sizes;
+    }
 }

@@ -71,7 +71,7 @@ class Size
     }
 
     /**
-     * @return boolean, true if the size is available|false if the size isn't available
+     * @return boolean, true if the size is available, false if the size isn't available
      */
     public function isAvailable()
     {
