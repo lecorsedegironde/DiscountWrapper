@@ -8,7 +8,10 @@
 
 namespace CDiscount;
 
-
+require("Price.php");
+require("Seller.php");
+require("Shipping.php");
+require("Size.php");
 
 class Offer
 {

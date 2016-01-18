@@ -9,6 +9,8 @@ namespace CDiscount;
  * Time: 14:33
  */
 
+require("Offer.php");
+
 class Product
 {
     /**
