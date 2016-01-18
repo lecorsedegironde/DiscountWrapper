@@ -73,6 +73,10 @@ class Product
      */
     private $_associatedProducts;
 
+    /**
+     * Product constructor.
+     * @param $product, the product array
+     */
     public function __construct($product)
     {
         $this->_id = $product["Id"];

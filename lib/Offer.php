@@ -9,6 +9,7 @@
 namespace CDiscount;
 
 
+
 class Offer
 {
     /**
@@ -55,7 +56,7 @@ class Offer
 
     /**
      * Offer constructor.
-     * @param $offer
+     * @param $offer, the offer array
      */
     public function __construct($offer)
     {
@@ -71,8 +72,16 @@ class Offer
 
         $this->_seller = new Seller($offer["Seller"]);
 
-        //TODO Not implemented classes
-        $this->_shippings = null;
+        if ($offer['Shippings'] != null) {
+            $this->_shippings = array();
+
+            foreach($offer['Shippings'] as $shipping) {
+                $ship = new Shipping($shipping);
+                array_push($this->_shippings, $ship);
+            }
+        }
+
+
         $this->_sizes = null;
 
     }

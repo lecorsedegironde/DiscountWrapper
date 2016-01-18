@@ -60,8 +60,8 @@ class Price
 
     /**
      * Price constructor.
-     * @param $salePrice
-     * @param $priceDetails
+     * @param $salePrice, the price of the product
+     * @param $priceDetails, the array of price details
      */
     public function __construct($salePrice, $priceDetails)
     {

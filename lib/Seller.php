@@ -12,12 +12,19 @@ namespace CDiscount;
 class Seller
 {
 
+    /**
+     * @var string, the id of the cDiscount seller
+     */
     private $_id;
+
+    /**
+     * @var string, the name of the cDiscount seller
+     */
     private $_name;
 
     /**
      * Seller constructor.
-     * @param $seller
+     * @param $seller, the seller array
      */
     public function __construct($seller)
     {
@@ -26,7 +33,7 @@ class Seller
     }
 
     /**
-     * @return mixed, the Id of the cDiscount seller
+     * @return string, the Id of the cDiscount seller
      */
     public function getId()
     {
@@ -34,7 +41,7 @@ class Seller
     }
 
     /**
-     * @return mixed, the name of the cDiscount seller
+     * @return string, the name of the cDiscount seller
      */
     public function getName()
     {
