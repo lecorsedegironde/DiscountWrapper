@@ -79,10 +79,21 @@ class Offer
                 $ship = new Shipping($shipping);
                 array_push($this->_shippings, $ship);
             }
+        } else {
+            $this->_shippings = null;
         }
 
 
-        $this->_sizes = null;
+        if ($offer['Sizes'] != null) {
+            $this->_sizes = array();
+
+            foreach($offer['Sizes'] as $size) {
+                $siz = new Size($size);
+                array_push($this->_sizes, $siz);
+            }
+        } else {
+            $this->_sizes = null;
+        }
 
     }
 
