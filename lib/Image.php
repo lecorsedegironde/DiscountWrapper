@@ -23,7 +23,7 @@ class Image
 
     /**
      * Image constructor.
-     * @param $image, the iamge array
+     * @param $image, the image array
      */
     public function __construct($image)
     {

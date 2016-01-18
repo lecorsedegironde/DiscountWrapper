@@ -38,14 +38,14 @@ class Offer
     private $_price;
 
     /**
-     * @var Seller, informations about the seller
+     * @var Seller, information about the seller
      */
     private $_seller;
 
     /**
-     * @var Shipping array, these are shippings methods available for the offer
+     * @var Shipping array, these are shipping methods available for the offer
      */
-    private $_shippings;
+    private $_shipping;
 
     /**
      * @var Size array, these are the product price per size, available only if there is multiple sizes for one
@@ -73,14 +73,14 @@ class Offer
         $this->_seller = new Seller($offer["Seller"]);
 
         if ($offer["Shippings"] != null) {
-            $this->_shippings = array();
+            $this->_shipping = array();
 
             foreach($offer["Shippings"] as $shipping) {
                 $ship = new Shipping($shipping);
-                array_push($this->_shippings, $ship);
+                array_push($this->_shipping, $ship);
             }
         } else {
-            $this->_shippings = null;
+            $this->_shipping = null;
         }
 
 
@@ -146,11 +146,11 @@ class Offer
     }
 
     /**
-     * @return Shipping array if there are shippings infos|null if not
+     * @return Shipping array if there are shipping info|null if not
      */
-    public function getShippings()
+    public function getShipping()
     {
-        return $this->_shippings;
+        return $this->_shipping;
     }
 
     /**
