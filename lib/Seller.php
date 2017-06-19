@@ -24,7 +24,7 @@ class Seller
 
     /**
      * Seller constructor.
-     * @param $seller, the seller array
+     * @param $seller , the seller array
      */
     public function __construct($seller)
     {

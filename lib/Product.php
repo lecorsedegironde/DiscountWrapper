@@ -9,7 +9,8 @@ namespace CDiscount;
  * Time: 14:33
  */
 
-require("Offer.php");
+require_once("Offer.php");
+require_once("Image.php");
 
 class Product
 {
@@ -97,11 +98,13 @@ class Product
 
         $this->_offersCount = $product["OffersCount"];
 
+        //*
         $this->_bestOffer = new Offer($product["BestOffer"]);
+        //*/
 
         if ($product["Images"] != null) {
             $this->_images = array();
-            foreach($product["Images"] as $image) {
+            foreach ($product["Images"] as $image) {
                 $img = new Image($image);
                 array_push($this->_images, $img);
             }
@@ -109,6 +112,7 @@ class Product
             $this->_images = null;
         }
 
+        //*
         if ($product["Offers"] != null) {
             $this->_offers = array();
             foreach ($product["Offers"] as $offer) {
@@ -118,6 +122,7 @@ class Product
         } else {
             $this->_offers = null;
         }
+        //*/
 
         if ($product["AssociatedProducts"] != null) {
             $this->_associatedProducts = array();

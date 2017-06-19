@@ -59,7 +59,7 @@ class Offer
 
     /**
      * Offer constructor.
-     * @param $offer, the offer array
+     * @param $offer , the offer array
      */
     public function __construct($offer)
     {
@@ -78,7 +78,7 @@ class Offer
         if ($offer["Shippings"] != null) {
             $this->_shipping = array();
 
-            foreach($offer["Shippings"] as $shipping) {
+            foreach ($offer["Shippings"] as $shipping) {
                 $ship = new Shipping($shipping);
                 array_push($this->_shipping, $ship);
             }
@@ -90,7 +90,7 @@ class Offer
         if ($offer["Sizes"] != null) {
             $this->_sizes = array();
 
-            foreach($offer["Sizes"] as $size) {
+            foreach ($offer["Sizes"] as $size) {
                 $siz = new Size($size);
                 array_push($this->_sizes, $siz);
             }

@@ -40,7 +40,7 @@ class Shipping
 
     /**
      * Shipping constructor.
-     * @param $shipping, the shipping array
+     * @param $shipping , the shipping array
      */
     public function __construct($shipping)
     {
